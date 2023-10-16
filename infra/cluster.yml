@@ -6,7 +6,7 @@ Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: 'bookstore'
+      ClusterName: 'bgDeploy'
 
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer

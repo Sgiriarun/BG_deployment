@@ -15,7 +15,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      AvailabilityZone: ap-south-1
+      AvailabilityZone:  ap-south-1a
       CidrBlock: !Sub '10.0.0.0/20'
       MapPublicIpOnLaunch: true
 
@@ -23,7 +23,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      AvailabilityZone: ap-south-1
+      AvailabilityZone:  ap-south-1b    
       CidrBlock: !Sub '10.0.32.0/20'
       MapPublicIpOnLaunch: true
 
@@ -62,7 +62,6 @@ Resources:
       DestinationCidrBlock: '0.0.0.0/0'
 
 Outputs:
-
   VPC:
     Description: VPC
     Value: !Ref VPC

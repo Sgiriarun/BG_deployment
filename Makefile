@@ -29,6 +29,10 @@ test:
 	#test program cov flag says how much test coverage inside
 	python -m pytest -vv --cov=src --cov=main test_*.py
 
-build:
-	#docker build
-	docker build -t devops-practice .
+build-blue:
+	@echo "Building blue-app Docker image..."
+	@docker build -t blue-app --build-arg APP_ENV=Blue -f Dockerfile .
+
+build-green:
+	@echo "Building green-app Docker image..."
+	@docker build -t green-app --build-arg APP_ENV=Green -f Dockerfile .

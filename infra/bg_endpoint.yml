@@ -6,7 +6,7 @@ Resources:
   Task:
     Type: AWS::ECS::TaskDefinition
     Properties:
-      Family: apis
+      Family: deployment
       Cpu: 256
       Memory: 512
       NetworkMode: awsvpc
@@ -14,29 +14,29 @@ Resources:
         - FARGATE
       ExecutionRoleArn: !ImportValue ECSTaskExecutionRole
       ContainerDefinitions:
-        - Name: booksapi
-          Image: 532497595666.dkr.ecr.us-west-2.amazonaws.com/books-api:v1
+        - Name: blue
+          Image: 788641659614.dkr.ecr.ap-south-1.amazonaws.com/bluegreen-deployment:blue
           Cpu: 256
           Memory: 512
           PortMappings:
-            - ContainerPort: 4567
+            - ContainerPort: 8080
               Protocol: tcp
           LogConfiguration:
             LogDriver: awslogs
             Options:
-              awslogs-group: 'apis'
+              awslogs-group: 'deployment'
               awslogs-region: !Ref AWS::Region
-              awslogs-stream-prefix: 'books-api'
+              awslogs-stream-prefix: 'bg'
 
   Service:
     Type: AWS::ECS::Service
     DependsOn: ListenerRule
     Properties:
-      ServiceName: books-service
+      ServiceName: bgservice
       TaskDefinition: !Ref Task
       Cluster: !ImportValue 'ECSCluster'
       LaunchType: FARGATE
-      DesiredCount: 2
+      DesiredCount: 1
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 70
@@ -49,21 +49,21 @@ Resources:
           SecurityGroups:
             - !ImportValue ContainerSecurityGroup
       LoadBalancers:
-        - ContainerName: booksapi
-          ContainerPort: 4567
+        - ContainerName: blue
+          ContainerPort: 8080
           TargetGroupArn: !Ref TargetGroup
 
   TargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Name: books-tg
+      Name: bgTarget
       VpcId: !ImportValue VPC
       Port: 80
       Protocol: HTTP
       Matcher:
         HttpCode: 200-299
       HealthCheckIntervalSeconds: 10
-      HealthCheckPath: /stat
+      HealthCheckPath: /
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 10
@@ -77,7 +77,7 @@ Resources:
       Conditions:
         - Field: path-pattern
           Values:
-            - /api/book*
+            - /*
       Actions:
         - TargetGroupArn: !Ref TargetGroup
           Type: forward
@@ -86,8 +86,8 @@ Resources:
 Outputs:
 
   ApiEndpoint:
-    Description: Books API Endpoint
-    Value: !Join ['', ['http://', !ImportValue DomainName, '/api/books']]
+    Description: Bg Endpoint
+    Value: !Join ['', ['http://', !ImportValue DomainName]]
     Export:
-      Name: 'BooksApiEndpoint'
+      Name: 'bgEndpoint'
 
