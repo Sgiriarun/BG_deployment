@@ -6,38 +6,37 @@ This project helps to describe about Blue Green deployment python webapp in AWS 
 ##switching mechanism with shell script between version With CloudFormation, some prefer create-stack, update-stack & delete-stack to manage zero-downtime blue-green deployments##
 
 ## APP installation and containerization ##
-we can make virtual environment using Makefile  
-<li>make vir_create</li>
-```to activat env paste particular command in that location```
-<li>make vir_activate</li> 
-```to install in local machine```
-<li>make install</li>
-```containerize for blue version```
-<li>make build-blue</li>
-```for green version```
-<li>make build-green</li>
+- we can make virtual environment using Makefile  
+``` make vir_create ```
+- to activat env paste particular command in that location
+``` make vir_activate ```
+- to install in local machine
+``` make install ```
+- containerize for blue version
+``` make build-blue ```
+- for green version
+``` make build-green ```
 
 ## push to ECR repositories 
-follow this steps to push code
-#create repository in AWS using ECR
-- ``` aws ecr create-repository --repository-name <YOUR_REPO_NAME> ```
-#authenticate docker to ECR
-- ``` aws ecr get-login --no-include-email | sh ```
-Tag and push docker images with ECR particular tag to ECR repo created
+- create repository in AWS using ECR
+``` aws ecr create-repository --repository-name <YOUR_REPO_NAME> ```
+- authenticate docker to ECR
+``` aws ecr get-login --no-include-email | sh ```
+- Tag and push docker images with ECR particular tag to ECR repo created
 ```
 # docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>
 # docker push <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>
 ```
 
 ## Create aws infrastructure using Makefile ##
- **Create vpc Stack**
-  <li> make create-vpc-stack</li>
- **Create iam Stack**
-  <li> make create-iam-stack</li>
-**Create cluster Stack**
-  <li> make create-cluster-stack</li>
- **Create endpoint Stack**
-  <li> make create-endpoint-stack</li>
+- Create vpc Stack
+  ``` make create-vpc-stack ```
+- Create iam Stack
+  ``` make create-iam-stack ```
+- Create cluster Stack
+  ``` make create-cluster-stack ```
+- Create endpoint Stack
+  ``` make create-endpoint-stack ```
 
 ## Update the version with update shell file ##
 A little way to register a new task definition revision and update the service using CLI.
