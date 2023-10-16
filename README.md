@@ -1,26 +1,26 @@
 # BG_deployment
-This project helps to describe about Blue Green deployment python webapp in AWS infrastructure
-###we used python + Docker + awscli +CloudFormation +ECR &ECS + Fargate + LoadBalancer### 
+This project helps to describe about BlueGreen deployment python webapp in AWS infrastructure
+### Created with python + Docker + awscli +CloudFormation +ECR &ECS + Fargate + LoadBalancer ### 
 
 
-##switching mechanism with shell script between version With CloudFormation, some prefer create-stack, update-stack & delete-stack to manage zero-downtime blue-green deployments##
+## switching mechanism is done with shell script and CloudFormation, create-stack, update-stack & delete-stack to manage zero-downtime blue-green deployments ##
 
 ## APP installation and containerization ##
 - we can make virtual environment using Makefile  
 ``` make vir_create ```
-- to activat env paste particular command in that location
+- To activate env paste particular command in that location
 ``` make vir_activate ```
-- to install in local machine
+- To install in local machine
 ``` make install ```
-- containerize for blue version
+- Containerize for blue version
 ``` make build-blue ```
-- for green version
+- For green version
 ``` make build-green ```
 
 ## push to ECR repositories 
-- create repository in AWS using ECR
+- Create repository in AWS using ECR
 ``` aws ecr create-repository --repository-name <YOUR_REPO_NAME> ```
-- authenticate docker to ECR
+- Authenticate docker to ECR
 ``` aws ecr get-login --no-include-email | sh ```
 - Tag and push docker images with ECR particular tag to ECR repo created
 ```
