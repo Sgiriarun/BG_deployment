@@ -27,7 +27,7 @@ we can make virtual environment using Makefile
  <li>```docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>```</li>
  <li>docker push <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG></li>
 
- ## Create aws infrastructure using Makefile ##
+## Create aws infrastructure using Makefile ##
  **Create vpc Stack**
   <li> make create-vpc-stack</li>
  **Create iam Stack**
@@ -36,3 +36,17 @@ we can make virtual environment using Makefile
   <li> make create-cluster-stack</li>
  **Create endpoint Stack**
   <li> make create-endpoint-stack</li>
+
+## Update the version with update shell file ##
+A little way to register a new task definition revision and update the service using CLI.
+```
+# ./update_service.sh <CLUSTER NAME> <SERVICE NAME> <TASK FAMILY>
+./update_service.sh bgDeploy bgservice deployment
+# One executed, ECS Service update will take a few minutes for the new task / container go live
+```
+
+
+## References
+
+- Blog on- https://spin.atomicobject.com/2017/06/06/ecs-deployment-script/
+- AWS ECS-CLI https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html
