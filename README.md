@@ -5,7 +5,7 @@ This project helps to describe about Blue Green deployment python webapp in AWS 
 
 ##switching mechanism with shell script between version With CloudFormation, some prefer create-stack, update-stack & delete-stack to manage zero-downtime blue-green deployments##
 
-## APP installation and containerization
+## APP installation and containerization ##
 we can make virtual environment using Makefile  
 <li>make vir_create</li>
 ```to activat env paste particular command in that location```
@@ -17,7 +17,7 @@ we can make virtual environment using Makefile
 ```for green version```
 <li>make build-green</li>
 
-## push to ECR repositories 
+## push to ECR repositories ##
 ``````
 ```create repository in AWS using ECR```
  <li>aws ecr create-repository --repository-name <YOUR_REPO_NAME></li>
@@ -27,8 +27,7 @@ we can make virtual environment using Makefile
  <li>```docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>```</li>
  <li>docker push <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG></li>
 
- ## Create aws infrastructure using Makefile
- ** **
+ ## Create aws infrastructure using Makefile ##
  **Create vpc Stack**
   <li> make create-vpc-stack</li>
  **Create iam Stack**
