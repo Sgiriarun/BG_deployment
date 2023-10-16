@@ -1,9 +1,9 @@
 # BG_deployment
 This project helps to describe about BlueGreen deployment python webapp in AWS infrastructure
-### Created with python + Docker + awscli +CloudFormation +ECR &ECS + Fargate + LoadBalancer ### 
-
-
-## switching mechanism is done with shell script and CloudFormation, create-stack, update-stack & delete-stack to manage zero-downtime blue-green deployments ##
+<strong><em> 
+Created with python + Docker + awscli +CloudFormation +ECR &ECS + Fargate + LoadBalancer. 
+switching mechanism is done with shell script and CloudFormation, create-stack, update-stack & delete-stack to manage zero-downtime blue-green deployments 
+</strong></em>
 
 ## APP installation and containerization ##
 - we can make virtual environment using Makefile  
