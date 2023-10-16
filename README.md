@@ -17,12 +17,12 @@ we can make virtual environment using Makefile
 ```for green version```
 <li>make build-green</li>
 
-## push to ECR repositories ##
+## push to ECR repositories 
 follow this steps to push code
-create repository in AWS using ECR
-- #aws ecr create-repository --repository-name <YOUR_REPO_NAME>
-authenticate docker to ECR
-- #aws ecr get-login --no-include-email | sh
+#create repository in AWS using ECR
+- ``` aws ecr create-repository --repository-name <YOUR_REPO_NAME> ```
+#authenticate docker to ECR
+- ``` aws ecr get-login --no-include-email | sh ```
 Tag and push docker images with ECR particular tag to ECR repo created
 ```
 # docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>
