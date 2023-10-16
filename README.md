@@ -18,7 +18,6 @@ we can make virtual environment using Makefile
 <li>make build-green</li>
 
 ## push to ECR repositories ##
-``````
 ```create repository in AWS using ECR```
  <li>aws ecr create-repository --repository-name <YOUR_REPO_NAME></li>
  ```authenticate docker to ECR```
