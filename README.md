@@ -18,4 +18,20 @@ we can make virtual environment using Makefile
 <li>make build-green</li>
 
 ## push to ECR repositories 
- aws ecr create-repository --repository-name bluegreen-deployment
+```create repository in AWS using ECR```
+ <li>aws ecr create-repository --repository-name <YOUR_REPO_NAME></li>
+ ```authenticate docker to ECR```
+ <li>aws ecr get-login --no-include-email | sh</li>
+ ```Tag and push docker images with ECR particular tag to ECR repo created```
+ <li>docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG></li>
+ <li>docker push <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG></li>
+
+ ## Create aws infrastructure using Makefile
+ **Create vpc Stack**
+  <li> make create-vpc-stack</li>
+ **Create iam Stack**
+  <li> make create-iam-stack</li>
+**Create cluster Stack**
+  <li> make create-cluster-stack</li>
+ **Create endpoint Stack**
+  <li> make create-endpoint-stack</li>

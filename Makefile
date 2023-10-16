@@ -36,3 +36,17 @@ build-blue:
 build-green:
 	@echo "Building green-app Docker image..."
 	@docker build -t green-app --build-arg APP_ENV=Green -f Dockerfile .
+
+
+create-vpc-stack:
+	aws cloudformation create-stack --template-body file://$PWD/infra/vpc.yml --stack-name vpc
+
+create-iam-stack:
+	aws cloudformation create-stack --template-body file://$PWD/infra/iam.yml --stack-name iam --capabilities CAPABILITY_IAM
+
+create-cluster-stack:
+	aws cloudformation create-stack --template-body file://$PWD/infra/cluster.yml --stack-name app-cluster
+
+create-endpoint-stack:
+	# Before running this command, make sure to edit api.yml to update the Image tag/URL as needed.
+	aws cloudformation create-stack --template-body file://$PWD/infra/bg_endpoint.yml --stack-name api
