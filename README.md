@@ -19,14 +19,14 @@ we can make virtual environment using Makefile
 
 ## push to ECR repositories ##
 follow this steps to push code
- -create repository in AWS using ECR
- <li>aws ecr create-repository --repository-name <YOUR_REPO_NAME></li>
- -authenticate docker to ECR```
- <li>aws ecr get-login --no-include-email | sh</li>
- -Tag and push docker images with ECR particular tag to ECR repo created
- ```
-    #docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>
-    #docker push <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG></li>
+create repository in AWS using ECR
+<li>aws ecr create-repository --repository-name <YOUR_REPO_NAME></li>
+authenticate docker to ECR```
+<li>aws ecr get-login --no-include-email | sh</li>
+Tag and push docker images with ECR particular tag to ECR repo created
+```
+#docker tag <YOUR_IMAGE_NAME> <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG>
+#docker push <YOUR_REPO_URL>/<YOUR_REPO_NAME>:<TAG></li>
 ```
 
 ## Create aws infrastructure using Makefile ##
